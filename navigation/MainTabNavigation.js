@@ -18,16 +18,12 @@ const MainTabNavigation = () => {
           console.log('route.name', route.name);
 
           if (route.name === 'SecondScreen') {
-            iconName = focused ? 'rocket' : 'rocket';
+            iconName = focused ? 'rocket' : 'rocket'; //TODO
           } else if (route.name === 'HomePage') {
             iconName = focused ? 'home' : 'home';
-            // return <Icon name="home" size={30} color="#900" />;
           }
           console.log('iconName', iconName);
           return <Icon name={iconName} size={30} color="#900" />;
-
-          // You can return any component that you like here!
-          //   return <Icon name="home" size={30} color="#900" />;
         },
         tabBarActiveTintColor: 'tomato',
         tabBarInactiveTintColor: 'gray',
