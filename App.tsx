@@ -1,5 +1,6 @@
 import React from 'react';
 import {useColorScheme} from 'react-native';
+import 'react-native-gesture-handler';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import MainNavigation from './navigation/MainNavigation';
