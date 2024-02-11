@@ -4,7 +4,9 @@ import 'react-native-gesture-handler';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import MainNavigation from './navigation/MainNavigation';
-
+import {store} from './store';
+import {Provider} from 'react-redux';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 // function App() {
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -13,7 +15,11 @@ const App = () => {
   //   backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   // };
 
-  return <MainNavigation></MainNavigation>;
+  return (
+    <Provider store={store}>
+      <MainNavigation></MainNavigation>
+    </Provider>
+  );
 };
 
 // const styles = StyleSheet.create({
