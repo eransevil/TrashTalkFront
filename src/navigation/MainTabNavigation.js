@@ -15,14 +15,12 @@ const MainTabNavigation = () => {
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
-          console.log('route.name', route.name);
 
           if (route.name === 'SecondScreen') {
             iconName = focused ? 'rocket' : 'rocket'; //TODO
           } else if (route.name === 'HomePage') {
             iconName = focused ? 'home' : 'home';
           }
-          console.log('iconName', iconName);
           return <Icon name={iconName} size={30} color="#900" />;
         },
         tabBarActiveTintColor: 'tomato',

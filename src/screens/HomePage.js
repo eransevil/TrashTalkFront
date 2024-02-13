@@ -1,7 +1,7 @@
 import {View, Text, SafeAreaView, StatusBar, Button} from 'react-native';
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {increment, decrement, incrementByAmount} from '../store/authReducer';
+import {increment, decrement, incrementByAmount} from '../../store/authReducer';
 
 const HomePage = ({navigation}) => {
   const dispatch = useDispatch();
