@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   value: 0,
-  isUserLoggedIn: false,
+  loggedInUser: null,
 };
 
 export const authReducer = createSlice({
@@ -18,10 +18,14 @@ export const authReducer = createSlice({
     incrementByAmount: (state, action) => {
       state.value += action.payload;
     },
+    setUser: (state, action) => {
+      state.loggedInUser = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const {increment, decrement, incrementByAmount} = authReducer.actions;
+export const {increment, decrement, incrementByAmount, setUser} =
+  authReducer.actions;
 
 export default authReducer.reducer;

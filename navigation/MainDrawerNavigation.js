@@ -8,13 +8,13 @@ import SignIn from '../screens/SignIn';
 
 const MainDrawerNavigation = () => {
   const Drawer = createDrawerNavigator();
-  const isUserLoggedIn = useSelector(state => state.authReducer.isUserLoggedIn);
+  const loggedInUser = useSelector(state => state.authReducer.loggedInUser);
 
   return (
     <Drawer.Navigator
       initialRouteName="HomePage"
-      screenOptions={{headerShown: isUserLoggedIn ? true : false}}>
-      {isUserLoggedIn ? (
+      screenOptions={{headerShown: loggedInUser ? true : false}}>
+      {loggedInUser ? (
         <Drawer.Group>
           <Drawer.Screen name="HomePage" component={HomePage} />
           <Drawer.Screen name="SecondScreen" component={SecondScreen} />

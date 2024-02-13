@@ -10,9 +10,14 @@ import {
   Alert,
 } from 'react-native';
 import React from 'react';
+import {
+  widthPercentageToDP as wp2dp,
+  heightPercentageToDP as hp2dp,
+} from 'react-native-responsive-screen';
 import {useForm, Controller} from 'react-hook-form';
 import {useDispatch} from 'react-redux';
 import {loginUser} from '../store/authAction';
+// import Colors from '../src/common/styles/Colors';
 
 const SignIn = ({navigation}) => {
   const dispatch = useDispatch();
@@ -44,12 +49,20 @@ const SignIn = ({navigation}) => {
               required: true,
             }}
             render={({field: {onChange, onBlur, value}}) => (
-              <TextInput
-                placeholder="First name"
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-              />
+              <View>
+                <Text style={{color: 'gray'}}>username</Text>
+                <TextInput
+                  style={{
+                    borderBottomWidth: 1,
+                    padding: wp2dp(3),
+                    // borderColor: Colors.LightGray,
+                  }}
+                  placeholder="Type your username"
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                />
+              </View>
             )}
             name="username"
           />
