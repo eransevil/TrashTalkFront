@@ -23,7 +23,6 @@ import {useDispatch} from 'react-redux';
 import {loginUser} from '../../store/authAction';
 import Colors from '../common/Colors';
 import VerticalSpace from '../common/VerticalSpace';
-//fdsfsd
 
 const SignIn = ({navigation}) => {
   const dispatch = useDispatch();
