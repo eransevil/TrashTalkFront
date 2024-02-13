@@ -24,13 +24,6 @@ import {loginUser} from '../../store/authAction';
 import Colors from '../common/Colors';
 import VerticalSpace from '../common/VerticalSpace';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-// import {Icon} from 'react-native-elements';
-
-{
-  /* <FontAwesomeIcon icon="" /> */
-}
-
 const SignIn = ({navigation}) => {
   const dispatch = useDispatch();
   const {
