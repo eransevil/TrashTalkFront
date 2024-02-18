@@ -7,7 +7,6 @@ const HomePage = ({navigation}) => {
   const dispatch = useDispatch();
   const count = useSelector(state => state.authReducer.value);
 
-  console.log('count', count);
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text>Home Screen</Text>

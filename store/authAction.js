@@ -23,7 +23,6 @@ export const signUpUser = userCredential => {
       dispatch(setIsLoading(true));
       const url = `http://localhost:3001/api/auth/signup`;
       const response = await axios.post(url, userCredential);
-      console.log('respons112312e', response.data);
       dispatch(setUser(response.data));
     } catch (error) {
       console.log(error);
