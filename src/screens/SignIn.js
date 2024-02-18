@@ -19,12 +19,15 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 
 import {useForm, Controller} from 'react-hook-form';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {loginUser} from '../../store/authAction';
 import Colors from '../common/Colors';
 import VerticalSpace from '../common/VerticalSpace';
+import {SvgUri} from 'react-native-svg';
+import InputField from '../common/InputField';
 
 const SignIn = ({navigation}) => {
+  const userError = useSelector(state => state.authReducer.userError);
   const dispatch = useDispatch();
   const {
     control,
@@ -36,7 +39,10 @@ const SignIn = ({navigation}) => {
       password: '',
     },
   });
-  const onSubmit = userCredential => dispatch(loginUser(userCredential));
+  const onSubmit = (userCredential, e) => {
+    e.preventDefault();
+    dispatch(loginUser(userCredential));
+  };
 
   return (
     <SafeAreaView>
@@ -59,7 +65,7 @@ const SignIn = ({navigation}) => {
 
         <View
           style={{
-            height: hp2dp(40),
+            height: hp2dp(50),
             width: wp2dp(80),
             alignItems: 'flex-start',
             alignSelf: 'center',
@@ -77,77 +83,37 @@ const SignIn = ({navigation}) => {
               }}
               render={({field: {onChange, onBlur, value}}) => (
                 <View style={{width: wp2dp(80)}}>
-                  <Text style={{color: Colors.PrimaryText}}>username</Text>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      borderBottomWidth: 1,
-                      paddingVertical: wp2dp(3),
-                      borderColor: Colors.PrimaryGray,
-                    }}>
-                    <Image
-                      style={{width: 15, height: 15, marginRight: 10}}
-                      source={{
-                        uri: `https://as2.ftcdn.net/v2/jpg/03/73/50/09/1000_F_373500999_wAWkzJZRb2XHm9KeHEDcCJBkx4wR67us.jpg`,
-                      }}
-                    />
-                    <TextInput
-                      // style={{
-                      //   borderBottomWidth: 1,
-                      //   padding: wp2dp(3),
-                      //   borderColor: Colors.PrimaryGray,
-                      // }}
-                      placeholder="Type your username"
-                      onBlur={onBlur}
-                      onChangeText={onChange}
-                      value={value}
-                    />
-                  </View>
+                  <InputField
+                    onBlur={onBlur}
+                    onChange={onChange}
+                    value={value}
+                    lable={'username'}
+                    icon={'https://www.svgrepo.com/show/532362/user.svg'}
+                    placeholder={'Type your username'}
+                    errors={errors}
+                  />
                 </View>
               )}
               name="username"
             />
-            {errors.username && (
-              <Text style={{color: Colors.PrimaryRed, fontSize: 10}}>
-                This is required.
-              </Text>
-            )}
             <VerticalSpace height={0.05} />
             <Controller
               control={control}
               rules={{
-                maxLength: 100,
+                required: true,
+                maxLength: 20,
               }}
               render={({field: {onChange, onBlur, value}}) => (
-                <View style={{width: wp2dp(80)}}>
-                  <Text style={{color: Colors.PrimaryText}}>password</Text>
-
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      width: wp2dp(80),
-                      borderBottomWidth: 1,
-                      paddingVertical: wp2dp(3),
-                      borderColor: Colors.PrimaryGray,
-                    }}>
-                    <Image
-                      style={{width: 15, height: 15, marginRight: 10}}
-                      source={{
-                        uri: `https://as2.ftcdn.net/v2/jpg/03/73/50/09/1000_F_373500999_wAWkzJZRb2XHm9KeHEDcCJBkx4wR67us.jpg`,
-                      }}
-                    />
-
-                    <TextInput
-                      placeholder="Type your password"
-                      onBlur={onBlur}
-                      onChangeText={onChange}
-                      value={value}
-                      secureTextEntry={true}
-                    />
-                  </View>
-                </View>
+                <InputField
+                  onBlur={onBlur}
+                  onChange={onChange}
+                  value={value}
+                  lable={'password'}
+                  icon={'https://www.svgrepo.com/show/445942/password-lock.svg'}
+                  placeholder={'Type your password'}
+                  secureTextEntry={true}
+                  errors={errors}
+                />
               )}
               name="password"
             />
@@ -164,10 +130,32 @@ const SignIn = ({navigation}) => {
                 </LinearGradient>
               </TouchableOpacity>
             </View>
+            {userError && (
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <SvgUri
+                  style={{
+                    marginHorizontal: 5,
+                  }}
+                  width={wp2dp(5)}
+                  height={hp2dp(5)}
+                  uri={'https://www.svgrepo.com/show/503021/error.svg'}
+                />
+                <Text
+                  style={{
+                    color: Colors.PrimaryRed,
+                    fontWeight: '700',
+                    fontSize: 15,
+                    fontStyle: 'italic',
+                  }}>
+                  {userError}
+                </Text>
+              </View>
+            )}
           </View>
         </View>
+        <Text>Don't hava an account yet?</Text>
         <Button
-          title="Didnt Have an account? SignIn"
+          title="Sign up"
           onPress={() => navigation.navigate('SignUp')}></Button>
       </View>
     </SafeAreaView>
@@ -184,7 +172,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 5,
+    borderRadius: 30,
   },
   button: {
     width: wp2dp('80'),

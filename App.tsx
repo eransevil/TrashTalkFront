@@ -7,6 +7,7 @@ import MainNavigation from './src/navigation/MainNavigation';
 import {store} from './store';
 import {Provider} from 'react-redux';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import Loader from './src/common/Loader';
 // function App() {
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -18,6 +19,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <MainNavigation></MainNavigation>
+      <Loader />
     </Provider>
   );
 };

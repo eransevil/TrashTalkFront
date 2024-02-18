@@ -1,19 +1,34 @@
 // import instance from "../../../utils/HttpClient";
 import axios from 'axios';
-import {setUser} from './authReducer';
+import {setUser, setUserError} from './authReducer';
+import {setIsLoading} from './loaderReducer';
 
 export const loginUser = userCredential => {
   return async dispatch => {
     try {
+      dispatch(setIsLoading(true));
       const url = `http://localhost:3001/api/auth/login`;
+      const response = await axios.post(url, userCredential);
+      dispatch(setUser(response.data));
+    } catch (error) {
+      dispatch(setUserError('Incorrect username or password'));
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  };
+};
+export const signUpUser = userCredential => {
+  return async dispatch => {
+    try {
+      dispatch(setIsLoading(true));
+      const url = `http://localhost:3001/api/auth/signup`;
       const response = await axios.post(url, userCredential);
       console.log('respons112312e', response.data);
       dispatch(setUser(response.data));
-      // } else throw Error(`respone status - ${isOpenRes.status}`);
     } catch (error) {
       console.log(error);
-      // writeLog(`error fetching is clinic open now ${error}`);
-      // dispatch(getIsClinicOpenNowError());
+    } finally {
+      dispatch(setIsLoading(false));
     }
   };
 };

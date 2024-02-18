@@ -5,6 +5,7 @@ import HomePage from '../screens/HomePage';
 import SecondScreen from '../screens/SecondScreen';
 import {UseSelector, useSelector} from 'react-redux';
 import SignIn from '../screens/SignIn';
+import SignUp from '../screens/SignUp';
 
 const MainDrawerNavigation = () => {
   const Drawer = createDrawerNavigator();
@@ -22,6 +23,7 @@ const MainDrawerNavigation = () => {
       ) : (
         <Drawer.Group>
           <Drawer.Screen name="SignIn" component={SignIn} />
+          <Drawer.Screen name="SignUp" component={SignUp} />
         </Drawer.Group>
       )}
     </Drawer.Navigator>
