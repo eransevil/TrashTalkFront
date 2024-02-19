@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "245927281150",
+    "project_id": "trashtalk-bbff9",
+    "storage_bucket": "trashtalk-bbff9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245927281150:android:dd85cfc0291e3e77bdc0af",
+        "android_client_info": {
+          "package_name": "com.trashtalk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxbbZBPoBIoVvl9kUQXsyLezdfgotIkpQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

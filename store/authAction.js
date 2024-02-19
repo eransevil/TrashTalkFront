@@ -11,6 +11,7 @@ export const loginUser = userCredential => {
       const response = await axios.post(url, userCredential);
       dispatch(setUser(response.data));
     } catch (error) {
+      console.log('error', error);
       dispatch(setUserError('Incorrect username or password'));
     } finally {
       dispatch(setIsLoading(false));
