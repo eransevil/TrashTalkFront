@@ -149,10 +149,17 @@ const SignUp = ({navigation}) => {
               </View>
             </View>
           </View>
-          <Text>Already have an account?</Text>
-          <Button
-            title="Log in"
-            onPress={() => navigation.navigate('SignIn')}></Button>
+          <View
+            style={{
+              flexDirection: 'row',
+              marginBottom: hp2dp(4),
+              alignSelf: 'flex-end',
+            }}>
+            <Text>Don't hava an account yet? </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
+              <Text style={{textDecorationLine: 'underline'}}>Sign In</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>

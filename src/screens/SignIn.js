@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   widthPercentageToDP as wp2dp,
   heightPercentageToDP as hp2dp,
@@ -25,6 +25,10 @@ import Colors from '../common/Colors';
 import VerticalSpace from '../common/VerticalSpace';
 import {SvgUri} from 'react-native-svg';
 import InputField from '../common/InputField';
+import auth from '@react-native-firebase/auth';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import {setUser, setUserError} from '../../store/authReducer';
+import SocialMedia from '../common/SocialMedia';
 
 const SignIn = ({navigation}) => {
   const userError = useSelector(state => state.authReducer.userError);
@@ -43,6 +47,35 @@ const SignIn = ({navigation}) => {
     e.preventDefault();
     dispatch(loginUser(userCredential));
   };
+
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId:
+        '245927281150-t9nakomt41jgn0mtkomdcvfphobtk42a.apps.googleusercontent.com',
+    });
+  }, []);
+
+  async function onGoogleButtonPress() {
+    try {
+      // Check if your device supports Google Play
+      await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
+      // Get the users ID token
+      const {idToken, user} = await GoogleSignin.signIn();
+      dispatch(setUser(user));
+      console.log('idToken', idToken);
+      console.log('user', user);
+
+      // Create a Google credential with the token
+      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+      // Sign-in the user with the credential
+      auth().signInWithCredential(googleCredential);
+      console.log('here222?');
+      return;
+    } catch (error) {
+      console.log('error -->>', error);
+    }
+  }
 
   return (
     <SafeAreaView>
@@ -65,7 +98,7 @@ const SignIn = ({navigation}) => {
 
         <View
           style={{
-            height: hp2dp(50),
+            height: hp2dp(35),
             width: wp2dp(80),
             alignItems: 'flex-start',
             alignSelf: 'center',
@@ -153,11 +186,19 @@ const SignIn = ({navigation}) => {
             )}
           </View>
         </View>
-        <Text>Don't hava an account yet?</Text>
-        <Button
-          title="Sign up"
-          onPress={() => navigation.navigate('SignUp')}></Button>
+        <View
+          style={{
+            flexDirection: 'row',
+            marginBottom: hp2dp(4),
+            alignSelf: 'flex-end',
+          }}>
+          <Text>Don't hava an account yet? </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+            <Text style={{textDecorationLine: 'underline'}}>Sign Up</Text>
+          </TouchableOpacity>
+        </View>
       </View>
+      <SocialMedia onGooglePress={onGoogleButtonPress} />
     </SafeAreaView>
   );
 };

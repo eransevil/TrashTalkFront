@@ -12,7 +12,20 @@
           "package_name": "com.trashtalk"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "245927281150-h7o51om7hi57rftukpoe18uvhcn5c6hu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.trashtalk",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "245927281150-t9nakomt41jgn0mtkomdcvfphobtk42a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDxbbZBPoBIoVvl9kUQXsyLezdfgotIkpQ"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "245927281150-t9nakomt41jgn0mtkomdcvfphobtk42a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "245927281150-7joo4ks75kpvvvgnbtgboggteaun7r4b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.TrashTalk"
+              }
+            }
+          ]
         }
       }
     }
