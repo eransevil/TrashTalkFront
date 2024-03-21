@@ -18,6 +18,23 @@ export const loginUser = userCredential => {
     }
   };
 };
+
+export const loginUserWithGoogle = idToken => {
+  return async dispatch => {
+    try {
+      console.log('25!!!');
+      dispatch(setIsLoading(true));
+      const url = `http://localhost:3001/api/auth/loginWithGoogle`;
+      const response = await axios.post(url, idToken);
+      dispatch(setUser(response.data));
+    } catch (error) {
+      console.log('error', error);
+      dispatch(setUserError('Incorrect username or password'));
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  };
+};
 export const signUpUser = userCredential => {
   return async dispatch => {
     try {

@@ -30,7 +30,7 @@ const SignUp = ({navigation}) => {
     defaultValues: {
       username: '',
       password: '',
-      fullname: '',
+      email: '',
     },
   });
   const onSubmit = userCredential => dispatch(signUpUser(userCredential));
@@ -81,14 +81,14 @@ const SignUp = ({navigation}) => {
                       onBlur={onBlur}
                       onChange={onChange}
                       value={value}
-                      lable={'fullname'}
+                      lable={'email'}
                       icon={'https://www.svgrepo.com/show/509283/user.svg'}
-                      placeholder={'Type your full name'}
+                      placeholder={'Type your email'}
                       errors={errors}
                     />
                   </View>
                 )}
-                name="fullname"
+                name="email"
               />
               <VerticalSpace height={0.05} />
               <Controller

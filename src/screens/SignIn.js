@@ -20,7 +20,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import {useForm, Controller} from 'react-hook-form';
 import {useDispatch, useSelector} from 'react-redux';
-import {loginUser} from '../../store/authAction';
+import {loginUser, loginUserWithGoogle} from '../../store/authAction';
 import Colors from '../common/Colors';
 import VerticalSpace from '../common/VerticalSpace';
 import {SvgUri} from 'react-native-svg';
@@ -60,18 +60,14 @@ const SignIn = ({navigation}) => {
       // Check if your device supports Google Play
       await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
       // Get the users ID token
-      const {idToken, user} = await GoogleSignin.signIn();
-      dispatch(setUser(user));
-      console.log('idToken', idToken);
-      console.log('user', user);
+      const {idToken} = await GoogleSignin.signIn();
 
       // Create a Google credential with the token
       const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
+      dispatch(loginUserWithGoogle({idToken}));
       // Sign-in the user with the credential
       auth().signInWithCredential(googleCredential);
-      console.log('here222?');
-      return;
     } catch (error) {
       console.log('error -->>', error);
     }
