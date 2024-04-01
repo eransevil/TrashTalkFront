@@ -11,7 +11,7 @@ import {
 import React from 'react';
 import {useDispatch} from 'react-redux';
 import {useForm, Controller} from 'react-hook-form';
-import {signUpUser} from '../../store/authAction';
+import {loginUserWithGoogle, signUpUser} from '../../store/authAction';
 import VerticalSpace from '../common/VerticalSpace';
 import InputField from '../common/InputField';
 import {
@@ -19,6 +19,9 @@ import {
   heightPercentageToDP as hp2dp,
 } from 'react-native-responsive-screen';
 import LinearGradient from 'react-native-linear-gradient';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import auth from '@react-native-firebase/auth';
+import SocialMedia from '../common/SocialMedia';
 
 const SignUp = ({navigation}) => {
   const dispatch = useDispatch();
@@ -34,6 +37,24 @@ const SignUp = ({navigation}) => {
     },
   });
   const onSubmit = userCredential => dispatch(signUpUser(userCredential));
+
+  async function onGoogleButtonPress() {
+    try {
+      // Check if your device supports Google Play
+      await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
+      // Get the users ID token
+      const {idToken} = await GoogleSignin.signIn();
+
+      // Create a Google credential with the token
+      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+      dispatch(loginUserWithGoogle({idToken}));
+      // Sign-in the user with the credential
+      auth().signInWithCredential(googleCredential);
+    } catch (error) {
+      console.log('error -->>', error);
+    }
+  }
 
   return (
     <SafeAreaView>
@@ -162,6 +183,7 @@ const SignUp = ({navigation}) => {
           </View>
         </View>
       </KeyboardAvoidingView>
+      <SocialMedia onGooglePress={onGoogleButtonPress} />
     </SafeAreaView>
   );
 };
