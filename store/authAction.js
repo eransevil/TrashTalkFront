@@ -22,7 +22,6 @@ export const loginUser = userCredential => {
 export const loginUserWithGoogle = idToken => {
   return async dispatch => {
     try {
-      console.log('25!!!');
       dispatch(setIsLoading(true));
       const url = `http://localhost:3001/api/auth/loginWithGoogle`;
       const response = await axios.post(url, idToken);
@@ -35,9 +34,23 @@ export const loginUserWithGoogle = idToken => {
     }
   };
 };
+export const logout = () => {
+  return async dispatch => {
+    try {
+      const url = `http://localhost:3001/api/auth/logout`;
+      const response = await axios.post(url);
+      dispatch(setUser(null));
+    } catch (error) {
+      console.log('error', error);
+    } finally {
+    }
+  };
+};
+
 export const signUpUser = userCredential => {
   return async dispatch => {
     try {
+      console.log('fsignUpUsersignUpUsersignUpUserds');
       dispatch(setIsLoading(true));
       const url = `http://localhost:3001/api/auth/signup`;
       const response = await axios.post(url, userCredential);
