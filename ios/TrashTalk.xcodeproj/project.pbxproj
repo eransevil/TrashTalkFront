@@ -41,6 +41,7 @@
 		4E728D76C271482DC97A80CC /* Pods-TrashTalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrashTalk.release.xcconfig"; path = "Target Support Files/Pods-TrashTalk/Pods-TrashTalk.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = TrashTalk/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		842F1CEE0EDA124D1FFF4C36 /* Pods-TrashTalk-TrashTalkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrashTalk-TrashTalkTests.release.xcconfig"; path = "Target Support Files/Pods-TrashTalk-TrashTalkTests/Pods-TrashTalk-TrashTalkTests.release.xcconfig"; sourceTree = "<group>"; };
+		8710D00E2BBC2EC00065B5AE /* TrashTalk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = TrashTalk.entitlements; path = TrashTalk/TrashTalk.entitlements; sourceTree = "<group>"; };
 		8711B9DF2B8F32A100E87097 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		877AE6852B839958002F9263 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C4427350883E298F0C83D9B5 /* libPods-TrashTalk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TrashTalk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +90,7 @@
 		13B07FAE1A68108700A75B9A /* TrashTalk */ = {
 			isa = PBXGroup;
 			children = (
+				8710D00E2BBC2EC00065B5AE /* TrashTalk.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -444,6 +446,7 @@
 			baseConfigurationReference = 22087BA59D83272B9E429138 /* Pods-TrashTalk-TrashTalkTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = RHZRS27CA4;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -472,6 +475,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = RHZRS27CA4;
 				INFOPLIST_FILE = TrashTalkTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -496,6 +500,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TrashTalk/TrashTalk.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RHZRS27CA4;
 				ENABLE_BITCODE = NO;
@@ -525,6 +530,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TrashTalk/TrashTalk.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RHZRS27CA4;
 				FRAMEWORK_SEARCH_PATHS = (

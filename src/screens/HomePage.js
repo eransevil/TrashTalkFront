@@ -5,27 +5,20 @@ import {increment, decrement, incrementByAmount} from '../../store/authReducer';
 
 const HomePage = ({navigation}) => {
   const dispatch = useDispatch();
-  const count = useSelector(state => state.authReducer.value);
+  const loggedInUser = useSelector(state => state.authReducer.loggedInUser);
 
+  console.log('loggedInUser', loggedInUser);
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingVertical: 10,
+      }}>
+      <Text> Welcome back {loggedInUser?.name}</Text>
       <Text>Home Screen</Text>
       <Text>Home Screen</Text>
-      <Button title="add" onPress={() => dispatch(increment())} />
-      <Button title="decrement" onPress={() => dispatch(decrement())} />
-      <Button
-        title="increment By 10"
-        onPress={() => dispatch(incrementByAmount(10))}
-      />
-      <Button
-        title="Go to Details"
-        onPress={() =>
-          navigation.navigate('SecondScreen', {
-            itemId: 86,
-            otherParam: 'anything you want here',
-          })
-        }
-      />
     </View>
   );
 };

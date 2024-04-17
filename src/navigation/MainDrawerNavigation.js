@@ -14,6 +14,8 @@ import SignUp from '../screens/SignUp';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {logout} from '../../store/authAction';
 import {useNavigation, DrawerActions} from '@react-navigation/native';
+import MainBottomTabNavigation from './MainBottomTabNavigation';
+
 const MainDrawerNavigation = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -43,10 +45,14 @@ const MainDrawerNavigation = () => {
     <Drawer.Navigator
       drawerContent={props => <CustomDrawerContent {...props} />}
       initialRouteName="HomePage"
-      screenOptions={{headerShown: loggedInUser ? true : false}}>
+      screenOptions={{headerShown: false}}>
       {loggedInUser ? (
         <Drawer.Group>
-          <Drawer.Screen name="HomePage" component={HomePage} />
+          <Drawer.Screen
+            name="HomePage"
+            component={MainBottomTabNavigation}
+            options={{headerShown: false}}
+          />
           <Drawer.Screen name="SecondScreen" component={SecondScreen} />
           <Drawer.Screen name="SecondScree2n" component={SecondScreen} />
         </Drawer.Group>

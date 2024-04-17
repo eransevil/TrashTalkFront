@@ -5,6 +5,7 @@ import HomePage from '../screens/HomePage';
 import SecondScreen from '../screens/SecondScreen';
 import SignIn from '../screens/SignIn';
 import SignUp from '../screens/SignUp';
+import Header from '../common/Header';
 
 const MaInStackNavigation = () => {
   const Stack = createNativeStackNavigator();
@@ -19,7 +20,10 @@ const MaInStackNavigation = () => {
         },
       }}>
       {isLoggedIn ? (
-        <Stack.Group screenOptions={{headerShown: false}}>
+        <Stack.Group
+          screenOptions={{
+            header: () => <Header navigation={navigation} />,
+          }}>
           <Stack.Screen name="HomePage" component={HomePage} />
           <Stack.Screen name="SecondScreen" component={SecondScreen} />
         </Stack.Group>
@@ -27,6 +31,7 @@ const MaInStackNavigation = () => {
         <Stack.Group>
           <Stack.Screen name="SignIn" component={SignIn} />
           <Stack.Screen name="SignUp" component={SignUp} />
+          ``
         </Stack.Group>
       )}
     </Stack.Navigator>
